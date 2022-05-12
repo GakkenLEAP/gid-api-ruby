@@ -5,14 +5,14 @@ require_relative "lib/gakkenid/version"
 Gem::Specification.new do |spec|
   spec.name = "gakkenid"
   spec.version = Gakkenid::VERSION
-  spec.authors = ["TODO: Write your name"]
-  spec.email = ["TODO: Write your email address"]
+  spec.authors = ["YOSHIOKA Eiichiro"]
+  spec.email = ["e.yoshioka@gakken.co.jp"]
 
-  spec.summary = "TODO: Write a short summary, because RubyGems requires one."
-  spec.description = "TODO: Write a longer description or delete this line."
-  spec.homepage = "TODO: Put your gem's website or public repo URL here."
+  spec.summary = "GakkenID API Wrapper for Ruby"
+  spec.description = ""
+  spec.homepage = "none"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 2.6.0"
+  spec.required_ruby_version = ">= 3.1.0"
 
   spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
