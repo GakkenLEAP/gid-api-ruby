@@ -9,7 +9,6 @@ module Gakkenid
   # API Client of GakkenID Ruby
   #
   #   @client ||= GakkenId::Client.new do |config|
-  #     config.env = "prod" or "dev"
   #     config.service_code = ENV["SERVICE_CODE"]
   #     config.client_secret_token = ENV["CLIENT_SECRET_TOKEN"]
   #     config.admin_access_token = ENV["ADMIN_ACCESS_TOKEN"]
@@ -30,6 +29,7 @@ module Gakkenid
       end
       yield(self) if block_given?
     end
+
     def httpclient
       @httpclient ||= HTTPClient.new(http_options)
     end
@@ -54,7 +54,7 @@ module Gakkenid
     def create_user_bulk(users)
       admin_access_token_required
       endpoint_path = '/user/bulk'
-      post(endpoint, endpoint_path, users.to_json, credentials)
+      post(user_portal_endpoint, endpoint_path, users.to_json, credentials)
     end
 
 
