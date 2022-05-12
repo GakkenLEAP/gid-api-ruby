@@ -1,1 +1,6 @@
-FROM Ruby:3.2.1
+FROM ruby:3.1.0
+
+
+WORKDIR /gakkenid
+
+COPY . .
