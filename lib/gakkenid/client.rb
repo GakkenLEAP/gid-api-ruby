@@ -4,18 +4,18 @@ require 'openssl'
 require 'uri'
 
 module Gakkenid
-
-
   # API Client of GakkenID Ruby
   #
   #   @client ||= GakkenId::Client.new do |config|
+  #     config.env = "prod" or "dev"
   #     config.service_code = ENV["SERVICE_CODE"]
   #     config.client_secret_token = ENV["CLIENT_SECRET_TOKEN"]
   #     config.admin_access_token = ENV["ADMIN_ACCESS_TOKEN"]
   #   end
   class Client
+
     # @return[String]
-    attr_accessor :client_secret_token, :admin_access_token, :user_portal_endpoint, :public_api_endpoint
+    attr_accessor :client_secret_token, :admin_access_token, :user_portal_endpoint, :public_api_endpoint, :env
 
     # @return[Object]
     attr_accessor :httpclient
@@ -35,15 +35,24 @@ module Gakkenid
     end
 
     def user_portal_endpoint
-      @user_portal_endpoint ||= BASE::USER_PORTAL_DEV_ENDPOINT
+      case env
+      when "prod" then
+        @user_portal_endpoint ||= BASE::USER_PORTAL_PROD_ENDPOINT
+      when "dev" then
+        @user_portal_endpoint ||= BASE::USER_PORTAL_DEV_ENDPOINT
+      end
     end
 
     def public_api_endpoint
-      @public_api_endpoint ||= BASE::PUBLIC_API_DEV_ENDPOINT
+      case env
+      when "prod" then
+        @public_api_endpoint ||= BASE::PUBLIC_API_DEV_ENDPOINT
+      when "dev" then
+        @public_api_endpoint ||= BASE::PUBLIC_API_DEV_ENDPOINT
+      end
     end
 
-
-    def credentials
+    def admin_credentials
       {
         "Authorization" => "Basic #{encode64(@admin_access_token)}",
       }
@@ -54,9 +63,8 @@ module Gakkenid
     def create_user_bulk(users)
       admin_access_token_required
       endpoint_path = '/user/bulk'
-      post(user_portal_endpoint, endpoint_path, users.to_json, credentials)
+      post(user_portal_endpoint, endpoint_path, users.to_json, admin_credentials)
     end
-
 
     # Fetch data, get content of specified URL.
     #
@@ -107,8 +115,6 @@ module Gakkenid
       headers = BASE::DEFAULT_HEADERS.merge(headers)
       httpclient.delete(endpoint_base + endpoint_path, headers)
     end
-
-
 
     def client_secret_token_required
       raise ArgumentError, '`client_secret_token` is not configured' unless client_secret_token
