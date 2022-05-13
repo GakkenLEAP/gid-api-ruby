@@ -37,18 +37,18 @@ module Gakkenid
     def user_portal_endpoint
       case env
       when "prod" then
-        @user_portal_endpoint ||= BASE::USER_PORTAL_PROD_ENDPOINT
+        @user_portal_endpoint ||= API::USER_PORTAL_PROD_ENDPOINT
       when "dev" then
-        @user_portal_endpoint ||= BASE::USER_PORTAL_DEV_ENDPOINT
+        @user_portal_endpoint ||= API::USER_PORTAL_DEV_ENDPOINT
       end
     end
 
     def public_api_endpoint
       case env
       when "prod" then
-        @public_api_endpoint ||= BASE::PUBLIC_API_DEV_ENDPOINT
+        @public_api_endpoint ||= API::PUBLIC_API_DEV_ENDPOINT
       when "dev" then
-        @public_api_endpoint ||= BASE::PUBLIC_API_DEV_ENDPOINT
+        @public_api_endpoint ||= API::PUBLIC_API_DEV_ENDPOINT
       end
     end
 
@@ -74,7 +74,7 @@ module Gakkenid
     #
     # @return [Net::HTTPResponse]
     def get(endpoint_base, endpoint_path, headers = {})
-      headers = BASE::DEFAULT_HEADERS.merge(headers)
+      headers = API::DEFAULT_HEADERS.merge(headers)
       httpclient.get(endpoint_base + endpoint_path, headers)
     end
 
@@ -87,7 +87,7 @@ module Gakkenid
     #
     # @return [Net::HTTPResponse]
     def post(endpoint_base, endpoint_path, payload = nil, headers = {})
-      headers = BASE::DEFAULT_HEADERS.merge(headers)
+      headers = API::DEFAULT_HEADERS.merge(headers)
       httpclient.post(endpoint_base + endpoint_path, payload, headers)
     end
 
@@ -100,7 +100,7 @@ module Gakkenid
     #
     # @return [Net::HTTPResponse]
     def put(endpoint_base, endpoint_path, payload = nil, headers = {})
-      headers = BASE::DEFAULT_HEADERS.merge(headers)
+      headers = API::DEFAULT_HEADERS.merge(headers)
       httpclient.put(endpoint_base + endpoint_path, payload, headers)
     end
 
@@ -112,7 +112,7 @@ module Gakkenid
     #
     # @return [Net::HTTPResponse]
     def delete(endpoint_base, endpoint_path, headers = {})
-      headers = BASE::DEFAULT_HEADERS.merge(headers)
+      headers = API::DEFAULT_HEADERS.merge(headers)
       httpclient.delete(endpoint_base + endpoint_path, headers)
     end
 
