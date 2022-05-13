@@ -1,2 +1,6 @@
 /.idea/
 /GakkenID.iml
+/pkg/
+/pkg/gakkenid-0.1.0.gem
+/sig/
+/sig/gakkenid.rbs
