@@ -4,6 +4,7 @@ services:
     build: .
     volumes:
       - .:/gakkenid
+      - ./pkg:/usr/local/bundle
     environment:
       - LANG=ja_JP.UTF-8
       - LC_CTYPE=ja_JP.UTF-8
