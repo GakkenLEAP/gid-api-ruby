@@ -5,9 +5,9 @@
 ## 環境変数を設定する
 
 ```bash
-export GID_SERVICE_CODE = <your service code>
-export GID_CLIENT_SECRET_TOKEN = <your client secret token>
-export GID_ADMIN_ACCESS_TOKEN = <your admin access token>
+export GID_SERVICE_CODE=<your service code>
+export GID_CLIENT_SECRET_TOKEN=<your client secret token>
+export GID_ADMIN_ACCESS_TOKEN=<your admin access token>
 ```
 
 ## 開発環境構築と開発手順
