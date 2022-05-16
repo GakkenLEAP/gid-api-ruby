@@ -2,6 +2,7 @@ require 'base64'
 require 'net/http'
 require 'openssl'
 require 'uri'
+require 'gakkenid/httpclient'
 require 'gakkenid/api'
 
 module Gakkenid
