@@ -55,7 +55,7 @@ module Gakkenid
 
     def admin_credentials
       {
-        "Authorization" => "Basic #{encode64(@admin_access_token)}",
+        "Authorization" => "Basic #{Base64.encode64(@admin_access_token)}",
       }
     end
 
@@ -64,7 +64,7 @@ module Gakkenid
     def create_user_bulk(users)
       admin_access_token_required
       endpoint_path = '/user/bulk'
-      post(user_portal_endpoint, endpoint_path, users.to_json, admin_credentials)
+      post(user_portal_endpoint, endpoint_path, users.to_s, admin_credentials)
     end
 
     # Fetch data, get content of specified URL.
