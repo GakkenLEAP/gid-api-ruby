@@ -2,15 +2,15 @@ require 'gakkenid/client'
 
 def create_users
 
-    @client ||= GakkenId::Client.new do |config|
+    @client ||= Gakkenid::Client.new do |config|
       config.env = "dev"
-      config.admin_access_token = ENV["ADMIN_ACCESS_TOKEN"]
+      config.admin_access_token = ENV["GID_ADMIN_ACCESS_TOKEN"]
     end
 
     user_list =  [
       {
-        "gid": "gid_yoshioka",
-        "pass":"gid_yoshioka_pass",
+        "gid": "gid_gakken_taro",
+        "pass":"gid_gakken_taro_pass",
         "mailaddress_1": "",
         "mailaddress_2": "",
         "mailaddress_3": "",
@@ -45,3 +45,5 @@ def create_users
     ]
     @client.create_user_bulk(user_list)
 end
+
+create_users

@@ -2,6 +2,7 @@ require 'base64'
 require 'net/http'
 require 'openssl'
 require 'uri'
+require 'gakkenid/api'
 
 module Gakkenid
   # API Client of GakkenID Ruby
@@ -46,7 +47,7 @@ module Gakkenid
     def public_api_endpoint
       case env
       when "prod" then
-        @public_api_endpoint ||= API::PUBLIC_API_DEV_ENDPOINT
+        @public_api_endpoint ||= API::PUBLIC_API_PROD_ENDPOINT
       when "dev" then
         @public_api_endpoint ||= API::PUBLIC_API_DEV_ENDPOINT
       end
@@ -117,11 +118,11 @@ module Gakkenid
     end
 
     def client_secret_token_required
-      raise ArgumentError, '`client_secret_token` is not configured' unless gid_client_secret_token
+      raise ArgumentError, '`client_secret_token` is not configured' unless client_secret_token
     end
 
     def admin_access_token_required
-      raise ArgumentError, '`admin_access_token` is not configured' unless gid_admin_access_token
+      raise ArgumentError, '`admin_access_token` is not configured' unless admin_access_token
     end
   end
 end
