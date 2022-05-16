@@ -7,10 +7,10 @@ module Gakkenid
   # API Client of GakkenID Ruby
   #
   #   @client ||= GakkenId::Client.new do |config|
-  #     config.env = "prod" or "dev"
-  #     config.service_code = ENV["SERVICE_CODE"]
-  #     config.client_secret_token = ENV["CLIENT_SECRET_TOKEN"]
-  #     config.admin_access_token = ENV["ADMIN_ACCESS_TOKEN"]
+  #     config.gid_env = "prod" or "dev"
+  #     config.service_code = ENV["GID_SERVICE_CODE"]
+  #     config.client_secret_token = ENV["GID_CLIENT_SECRET_TOKEN"]
+  #     config.admin_access_token = ENV["GID_ADMIN_ACCESS_TOKEN"]
   #   end
   class Client
 
@@ -117,11 +117,11 @@ module Gakkenid
     end
 
     def client_secret_token_required
-      raise ArgumentError, '`client_secret_token` is not configured' unless client_secret_token
+      raise ArgumentError, '`client_secret_token` is not configured' unless gid_client_secret_token
     end
 
     def admin_access_token_required
-      raise ArgumentError, '`admin_access_token` is not configured' unless admin_access_token
+      raise ArgumentError, '`admin_access_token` is not configured' unless gid_admin_access_token
     end
   end
 end
