@@ -10,9 +10,6 @@ export  GID_CLIENT_SECRET_TOKEN = <your client secret token>
 export  GID_ADMIN_ACCESS_TOKEN = <your admin access token>
 ```
 
-#     config.client_secret_token = ENV["GID_CLIENT_SECRET_TOKEN"]
-#     config.admin_access_token = ENV["GID_ADMIN_ACCESS_TOKEN"]
-
 ## 開発環境構築と開発手順
 `docker-compose build`
 
