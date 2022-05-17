@@ -56,16 +56,18 @@ module Gakkenid
 
     def admin_credentials
       {
-        "Authorization" => "Basic #{Base64.encode64(@admin_access_token)}",
+        "Authorization" => "Basic #{Base64.strict_encode64(@admin_access_token)}",
       }
     end
 
-    # Create GakkenID User
+    # Create GakkenID Users JSON
+    # @param users [JSON]
     # @return [Net::HTTPResponse]
     def create_user_bulk(users)
       admin_access_token_required
-      endpoint_path = '/user/bulk'
-      post(user_portal_endpoint, endpoint_path, users.to_s, admin_credentials)
+      endpoint_path = '/users/bulk'
+      res = post(user_portal_endpoint, endpoint_path, users, admin_credentials)
+      res.body.force_encoding("UTF-8")
     end
 
     # Fetch data, get content of specified URL.
@@ -90,7 +92,7 @@ module Gakkenid
     # @return [Net::HTTPResponse]
     def post(endpoint_base, endpoint_path, payload = nil, headers = {})
       headers = API::DEFAULT_HEADERS.merge(headers)
-      httpclient.post(endpoint_base + endpoint_path, payload, headers)
+      httpclient.post(endpoint_base + endpoint_path, payload.force_encoding("UTF-8"), headers)
     end
 
     # Put data, get content of specified URL.

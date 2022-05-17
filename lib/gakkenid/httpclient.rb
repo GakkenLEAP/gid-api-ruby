@@ -32,7 +32,7 @@ module Gakkenid
 
     def get(url, header = {})
       uri = URI(url)
-      http(uri).get(uri.request_uri, header)
+      res = http(uri).get(uri.request_uri, header)
     end
 
     def post(url, payload, header = {})

@@ -9,7 +9,7 @@ module Gakkenid
 
     DEFAULT_HEADERS = {
       'X-Requested-With' => 'XMLHttpRequest',
-      'Content-Type' => 'application/json; charset=UTF-8'
+      'Content-Type' => 'application/json'
     }.freeze
   end
 end
