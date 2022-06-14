@@ -17,7 +17,7 @@ module Gakkenid
   class Client
 
     # @return[String]
-    attr_accessor :client_secret_token, :admin_access_token, :user_portal_endpoint, :public_api_endpoint, :env
+    attr_accessor :client_secret_token, :admin_access_token, :user_portal_endpoint, :public_api_endpoint, :gid_env
 
     # @return[Object]
     attr_accessor :httpclient
@@ -37,7 +37,7 @@ module Gakkenid
     end
 
     def user_portal_endpoint
-      case env
+      case gid_env
       when "prod" then
         @user_portal_endpoint ||= API::USER_PORTAL_PROD_ENDPOINT
       when "dev" then
@@ -46,7 +46,7 @@ module Gakkenid
     end
 
     def public_api_endpoint
-      case env
+      case gid_env
       when "prod" then
         @public_api_endpoint ||= API::PUBLIC_API_PROD_ENDPOINT
       when "dev" then
